@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>托管以及自定义域名</title>
+      <link href="/2024/05/06/server/"/>
+      <url>/2024/05/06/server/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>前言:</p><blockquote><p>在我做完基于GitHub的动态博客后，我想着能不能将博客进行托管，今天就突发奇想查了一下果然可以，Vercel进行托管，这个网站本身就是基于Hexo引擎模块开发的，vercel类似于github page，但远比github page强大，最重要的是我可以自定义域名！！！。</p></blockquote></blockquote><h3 id="进入网站绑定仓库"><a href="#进入网站绑定仓库" class="headerlink" title="进入网站绑定仓库"></a>进入网站绑定仓库</h3><p><strong>首先我们需要进入网站</strong><br> <a href="https://vercel.com/">vercel</a><br>注册一个账号绑定GitHub账号，完成后会出现刚刚关联的GitHub账号里面的仓库<br><img src="1.png"><br>选择我们需要上传的GitHub仓库，配置项目名时要注意，项目名字只能是数字，字母和连字符<br>填写完后点击部署<br><img src="2.png"></p><h3 id="域名的自定义"><a href="#域名的自定义" class="headerlink" title="域名的自定义"></a>域名的自定义</h3><p>点击右上角的View Domains如果没有这个按钮，我们可以点击头像进入设置<br><img src="3.png"><br>进入后我们可以看到Vercel已经分配了一个二级域名，我们可以通过这个域名访问我们自己的博客。<br><strong>当然这个不是我的作风，如果我可以自定义域名的话，是不是更加方便了呢？</strong><br>所以我选择绑定自己的域名，因此我决定购买一个属于自己的域名。<br>通过我的寻找终于找到了一个性价比极高的网站<strong>NameSilo</strong>最重要的是可以用<strong>支付宝</strong><br>我因此进入了这个网站</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.namesilo.com/</span><br></pre></td></tr></table></figure><p><img src="4.png"><br>首先还是老生常谈的注册&#x2F;登录<br>然后在搜索框里面输入自己想要的域名<br><img src="5.png"><br>购买后我们进入刚刚Vercel的域名设置，添加自己刚刚购买的域名<br>这个时候我们需要在域名处添加一条解析记录(如果你添加的是一级域名那将需要两条解析记录)<br>我们需要进入刚刚购买域名的网站<br>进入个人页面：<br><img src="6.png"><br>点击<strong>Domain Manager</strong><br>此时我们进入到了这个页面<br><img src="7.png"><br>选择<strong>Options</strong>下面第五个图标<strong>Manager DNS for this Domain</strong><br>此时我们就进入到了配置DNS的界面：<br><img src="8.png"><br>此时我们需要根据另一边的<mark>vercel</mark>来选择类型</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">A|AAAA|CNAME|MX|TXT/SPF|SRV|CAA</span><br></pre></td></tr></table></figure><p>在记录类型，主机记录和记录值这三项分别填入Vercel给出的值，其他默认即可<br>添加完成后等待10秒左右，Vercel就显示成功解析，这时我们可以通过自己绑定的域名访问网站。</p><h3 id="最后的配置"><a href="#最后的配置" class="headerlink" title="最后的配置"></a>最后的配置</h3><p>我们用Vscode打开本地博客的配置文件<mark>.config_yml</mark> 在配置文件中的URL选项换上我们刚刚自定义的域名<br><img src="9.png"></p><p><strong>此时此刻我们的自定义域名就成功了</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 博客 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>博客图片问题</title>
+      <link href="/2024/05/05/images/"/>
+      <url>/2024/05/05/images/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>前言:</p><blockquote><p>在上一个文章创建期间我遇到了图片无法显示的问题，通过查找大量的方法，最终找到了一个最佳的方法</p></blockquote></blockquote><h3 id="修改配置与安装插件"><a href="#修改配置与安装插件" class="headerlink" title="修改配置与安装插件"></a>修改配置与安装插件</h3><p>我们需要修改站点的配置 <strong>_config.yml</strong><br>将<strong>post_asset_folder</strong>设置为<strong>true</strong>如下图：<br><img src="1.png"><br>然后安装插件：<br> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cnpm install hexo-asset-image --save</span><br></pre></td></tr></table></figure></p><h3 id="修复静态图片路径"><a href="#修复静态图片路径" class="headerlink" title="修复静态图片路径"></a>修复静态图片路径</h3><p>在生成预览时，依旧无法正常查看图片<br>我们需要到<strong>node_modules</strong>中找到<strong>hexo-asset-image</strong>，并将58,59行的<br><img src="2.png"><br>修改为:<br> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$(this).attr(&#x27;src&#x27;, + src);</span><br><span class="line">console.info&amp;&amp;console.info(&quot;update link as:--&gt;&quot;  + src);</span><br></pre></td></tr></table></figure><br>如下图：<br><img src="3.png"></p><p>不出意外的话，图片就可以正常显示了</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 错误 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>创建博客</title>
+      <link href="/2024/05/02/blogs/"/>
+      <url>/2024/05/02/blogs/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>前言:</p><blockquote><p>由于学的东西太多了需要整理，所以我创建了这个博客，在创建博客时出现了很多问题，由此记录</p></blockquote></blockquote><h3 id="准备工具"><a href="#准备工具" class="headerlink" title="准备工具"></a>准备工具</h3><p><strong>首先我们需要做好工具的准备(点击链接即可进入官网安装)：</strong></p><ul><li><a href="https://nodejs.org/en">nodejs</a></li><li><a href="https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git">git</a></li></ul><p><strong>安装完成后我们需要检测是否安装成功，管理员运行cmd，依次输入以下代码</strong></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm  -v(node附带的)</span><br><span class="line">git  -v</span><br></pre></td></tr></table></figure><p> <strong>下载Hexo</strong><br> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure></p><h3 id="搭建仓库"><a href="#搭建仓库" class="headerlink" title="搭建仓库"></a>搭建仓库</h3><p><strong>成功下载好工具之后，我们开始搭建由GitHub存储静态页面的仓库</strong><br>首先注册&#x2F;登入 <u><a href="https://github.com/">Github</a><u></u></u></p><p>在登入&#x2F;注册后左上角有一个<strong>new</strong>点击后输入Repository name &#x2F; 点击Create repository,(注意：用户名.github.io)勾选Add a README file 再点击 Create repository即可创建仓库。<br><img src="aa.png"></p><h3 id="SSH-Key-配置"><a href="#SSH-Key-配置" class="headerlink" title="SSH Key 配置"></a>SSH Key 配置</h3><p>在往github上push项目的时候，如果走https的方式，每次都需要输入账号密码，非常麻烦。而采用ssh的方式，就不再需要输入，只需要在github自己账号下配置一个ssh key即可。<br>1.首先我们需要打开我们下载的<strong>Git Bush</strong>再里面输入自己绑定Github的邮箱<br> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;自己Github绑定的邮箱&quot;</span><br></pre></td></tr></table></figure><br>接下来敲四下回车即可</p><p>2.根据一下路径进入 C盘符-&gt;用户-&gt;自己当前使用的用户名-&gt;.ssh文件夹<br>用任意文本编辑器打开<strong>id_rsa.pub</strong>文件，复制里面所有内容。</p><p>打开Github进入设置页面点击<strong>SSH and GPG key</strong> 我们新建一个ssh key<br>标题任意，只需要再<strong>KEY</strong>代码框中输入刚刚复制的代码，点击创建即可。</p><p><strong>测试是否关联成功</strong></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -T -v git@github.com</span><br></pre></td></tr></table></figure><p>出现一下文字就是绑定成功</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Hi WangRongsheng! You&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span><br><span class="line"></span><br></pre></td></tr></table></figure><h3 id="本地部署"><a href="#本地部署" class="headerlink" title="本地部署"></a>本地部署</h3><p>在任意位置添加文件夹用于放置博客文件(如果创建后初始化错误那就是你当前的权限没有管理员的授权需要切换,作者踩过雷)</p><p>再文件夹中打开<strong>Git Bash</strong>输入<br> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure><br> 进行初始化,如果不行就试试<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npx hexo init</span><br></pre></td></tr></table></figure><br> 如果还是不行那你就是跟作者踩了同一个坑(权限问题，需要以管理员身份打开)<br> 第一种<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo install</span><br></pre></td></tr></table></figure><br> 第二种<br> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npx hexo install</span><br></pre></td></tr></table></figure><br> 如果下载很慢的话我们可以试试使用cnpm<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g cnpm --registry=http://registry.npmmirror.com</span><br></pre></td></tr></table></figure><br> 检查是否安装成功<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cnpm -v</span><br></pre></td></tr></table></figure><br>安装成功之后，以后安装依赖包的方式和npm的是一样的，只是npm的命令换成是cnpm就可以了<br><img src="hex.png"></p><p>下载完成后我们使用以下代码生成本地的静态文件<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cnpm hexo g</span><br></pre></td></tr></table></figure><br>本地部署<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cnpm hexo s</span><br></pre></td></tr></table></figure></p><h3 id="上线博客"><a href="#上线博客" class="headerlink" title="上线博客"></a>上线博客</h3><p>  在我们生成的本地Hexo中我们可以发现有名为**_config.yml<strong>的配置文件，用记事本或者VScode打开<br>  拉到最下面将deploy后面全部删掉，复制这段<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type: git</span><br><span class="line">repository: </span><br><span class="line">branch: main</span><br></pre></td></tr></table></figure><br>(每一行前面有两个空格不要删除，每个冒号后面也有空格不要删除！)<br>我们进入自己的GitHub仓库点击</strong>Code<strong>复制仓库链接粘贴到</strong>repository**后面保存后退出。</p><p>我们再次使用<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cnpm hexo g</span><br></pre></td></tr></table></figure><br>上传<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cnpm hexo d</span><br></pre></td></tr></table></figure><br>如果你是第一次使用那么需要填入一些配置<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global user.email &quot;自己的邮箱&quot;</span><br></pre></td></tr></table></figure><br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;自己的用户名&quot;</span><br></pre></td></tr></table></figure><br>如果不是第一次，并且出现<strong>request to <a href="https://registry.nom.taobao.org/hexo">https://registry.nom.taobao.org/hexo</a> failed</strong>那么恭喜你跟作者又是一样的错误，这个时候我们需要修改一下镜像<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g cnpm --registry=http://registry.npmmirror.com</span><br></pre></td></tr></table></figure><br>完成后我们继续上传输入<br> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cnpm hexo d</span><br></pre></td></tr></table></figure><br>此时会弹出一个GitHub窗口，我们进行登录，等待片刻后我们就可以输入访问链接<br> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">用户名.githun.io</span><br></pre></td></tr></table></figure><br>此时此刻，我们就已经完成了基于github动态的博客！！！！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 博客 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+  
+  
+</search>
