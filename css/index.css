@@ -4012,6 +4012,15 @@ h1.page-title + .tag-cloud-list {
 #nav .site-page:not(.child):hover:after {
   width: 100%;
 }
+#nav #none_space {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
 #pagination .pagination {
   margin-top: 20px;
   text-align: center;
@@ -4173,7 +4182,7 @@ h1.page-title + .tag-cloud-list {
   position: absolute;
   top: calc(50% - 7px);
   color: #f47466;
-  content: '\f0c1';
+  content: '\f863';
   left: 0;
   line-height: 1;
   -webkit-transition: all 0.2s ease-out;
