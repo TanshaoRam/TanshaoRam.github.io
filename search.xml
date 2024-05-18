@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>win11安装</title>
+      <link href="/2024/05/18/win/"/>
+      <url>/2024/05/18/win/</url>
+      
+        <content type="html"><![CDATA[<h1 id="windons的安装"><a href="#windons的安装" class="headerlink" title="windons的安装"></a>windons的安装</h1><h2 id="准备阶段"><a href="#准备阶段" class="headerlink" title="准备阶段"></a>准备阶段</h2><p>首先我们需要准备一个u盘内存最好在<code>16G</code>以上，在安装期间u盘会<code>格式化</code>，我们需要将u盘的重要文件给拷贝一份以防不必要的损失<br>其次我们需要一台电脑下载微软官方系统的安装工具，进入下面这个链接：<br><a href="https://www.microsoft.com/zh-cn/software-download/windows11"><code>微软win11下载</code></a></p><p><img src="https://picimg.tanshao.cc/win/PixPin1.png" alt="图片"></p><p>下载完成后，我们安装进u盘</p><p><img src="https://picimg.tanshao.cc/win/PixPin2.png" alt="图片"><br><img src="https://picimg.tanshao.cc/win/PixPin3.png" alt="图片"><br><img src="https://picimg.tanshao.cc/win/PixPin4.png" alt="图片"></p><h2 id="电脑设置开机启动u盘"><a href="#电脑设置开机启动u盘" class="headerlink" title="电脑设置开机启动u盘"></a>电脑设置开机启动u盘</h2><p>我们将制作好的u盘插入电脑，电脑一般开机由硬盘启动，我们将它改为u盘启动才会执行u盘中的安装程序。</p><h3 id="设置方式"><a href="#设置方式" class="headerlink" title="设置方式"></a>设置方式</h3><ol><li>开机启动热键选择u盘启动<br><img src="https://picimg.tanshao.cc/win/PixPin5.png" alt="图片"><br>进入后，我们选择<code>UEFI</code>开头的u盘启动</li><li>主板bios设置u盘为第一启动项<br>按下开机键后不停点击键盘del键，进入主板bios界面<br><img src="https://picimg.tanshao.cc/win/PixPin6.png" alt="图片"><br>我们可以在界面上找到<code>Boot Priority</code> 的字母，它的意思是<code>启用优先设置</code><br>再找到<code>UEFI</code>开头的u盘，将鼠标放上图标即可查看，将u盘图标拖动到<code>Boot Priority</code>下。<br>如果不能拖动，我们点击高级设置，进入<code>Settings</code>找到启动，在启动选项1中选择<code>UEFI</code>开头的u盘，退出bios就会显示第一启动项为u盘<br><img src="https://picimg.tanshao.cc/win/PixPin7.png" alt="图片"><h2 id="系统安装"><a href="#系统安装" class="headerlink" title="系统安装"></a>系统安装</h2><img src="https://picimg.tanshao.cc/win/PixPin8.png" alt="图片"><br><img src="https://picimg.tanshao.cc/win/PixPin9.png" alt="图片"><br>如果显示win11无法安装，那是因为win11安装的要求电脑不符合，但我们可以用另一种，我们<code>Shift+F10</code>调出命令符输入<code>regedit</code>打开注册表<br><img src="https://picimg.tanshao.cc/win/PixPin10.png" alt="图片"><br>我们在Setup文件夹下新建文件夹名字为<code>LabConfig</code>注意大小写，在<code>LabConfig</code>中创建两个word值，我们需要选择32位<br><img src="https://picimg.tanshao.cc/win/PixPin11.png" alt="图片"><br><img src="https://picimg.tanshao.cc/win/PixPin12.png" alt="图片"><br>第一个word我们输入<code>BypassTPMCheck</code>,输入完成后，我们点击<code>BypassTPMCheck</code>输入<code>00000001</code><br>第二个word我们输入<code>BypassSecureBootCheck</code>,输入完成后，我们点击<code>BypassSecureBootCheck</code>输入<code>00000001</code>。<br>关闭注册表和命令符，返回上一选项，再次点击下一页，最后，如果显示有其他系统，会看到很多分区，我们删除各个分区使其变为一块新硬盘。<br>我们需要一个全新的C盘装系统，我们选择新建，在大小这里输入新建磁盘空间，<br>点击应用会出现3个分区前两个分区为系统保留分区，第三个是主分区也就是C盘，我们选择主分区，点击下一页，系统会自动安装等待即可，安装完成后电脑就自动重启，接下来就可以设置系统的时区。</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文章 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 知识 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>推软件</title>
+      <link href="/2024/05/16/software01/"/>
+      <url>/2024/05/16/software01/</url>
+      
+        <content type="html"><![CDATA[<h1 id="PixPin"><a href="#PixPin" class="headerlink" title="PixPin"></a>PixPin</h1><p>我们再剪切图片的时候一般用的是电脑自带的剪切软件，或者是用QQ和微信<br>今天我推荐一款软件<code>PixPin</code>,它的特点比其他截图软件多长截图和文字识别以及Gif的录制与制作，但缺点也很明显就是不成熟，需要自己摸索。<br>下载链接<a href="https://pixpinapp.com/"><code>PixPin</code></a></p><h1 id="Snipaste"><a href="#Snipaste" class="headerlink" title="Snipaste"></a>Snipaste</h1><p>这个软件历经多个迭代，已经成型，当然和上面的<code>PixPin</code>对比缺少长截图，但紧接着因为这个软件已经成型所以我们可以根据它的<a href="&quot;https://docs.snipaste.com/zh-cn/&quot;"><code>用户手册</code></a>来知道如何使用这也是<code>PixPin</code>弊端<br>下载链接<a href="https://zh.snipaste.com/"><code>Snipaste</code></a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 每日一推 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 知识 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>MySQL总结</title>
       <link href="/2024/05/10/MySQL/"/>
       <url>/2024/05/10/MySQL/</url>
@@ -17,6 +67,12 @@
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> SQL </tag>
+            
+        </tags>
       
     </entry>
     
@@ -37,6 +93,12 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> 网站 表情 </tag>
+            
+        </tags>
+      
     </entry>
     
     
@@ -55,6 +117,12 @@
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> Makdown </tag>
+            
+        </tags>
       
     </entry>
     
@@ -75,6 +143,12 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> 知识 </tag>
+            
+        </tags>
+      
     </entry>
     
     
@@ -89,7 +163,7 @@
       
       <categories>
           
-          <category> 博客 </category>
+          <category> 文章 </category>
           
       </categories>
       
@@ -108,7 +182,7 @@
       
       <categories>
           
-          <category> 错误 </category>
+          <category> 文章 </category>
           
       </categories>
       
